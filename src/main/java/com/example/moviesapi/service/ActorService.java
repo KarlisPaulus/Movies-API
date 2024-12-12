@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,10 @@ public class ActorService {
         Actor actor = getActorById(actorId)
                 .orElseThrow(() -> new ResourceNotFoundException("Actor not found with ID: " + actorId));
         return actor.getMovies();
+    }
+
+    public List<Actor> getAlphabeticallySortedActors() {
+        return actorRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
     
      // Actor name update

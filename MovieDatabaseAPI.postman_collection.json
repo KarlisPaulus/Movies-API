@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a187951f-6982-41db-9f2b-9cd63d87e0bf",
+		"_postman_id": "12a59609-562a-4086-baa7-d5b11c6e6873",
 		"name": "Movie Database API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "38660387"
@@ -736,6 +736,23 @@
 									"key": "size",
 									"value": "5"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET (Sort Actors Alphabetically",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}{{a}}/sort",
+							"host": [
+								"{{url}}{{a}}"
+							],
+							"path": [
+								"sort"
 							]
 						}
 					},

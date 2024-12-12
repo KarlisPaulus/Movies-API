@@ -24,6 +24,7 @@ import com.example.moviesapi.service.ActorService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.EntityModel;
@@ -108,6 +109,23 @@ public class ActorController {
             return ResponseEntity.ok().body("No actors found matching the name: " + name);
         }
         return ResponseEntity.ok(matchingActors);
+    }
+
+    @GetMapping("/actors/sort")
+    public ResponseEntity<List<Actor>> getSortedActors(
+        @PositiveOrZero(message = "Page number must be positive or zero.") @RequestParam(required = false) Integer page,
+        @Positive(message = "Size must be a positive number") @RequestParam(required = false) Integer size) {
+
+        // Apply pagination if page and size are provided
+        if (page != null && size != null) {
+            Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
+            Page<Actor> actorsPage = actorService.getAllPageableActors(pageable);
+            
+            return ResponseEntity.ok(actorsPage.getContent());
+        }
+        List<Actor> sortedActors = actorService.getAlphabeticallySortedActors();
+        
+        return ResponseEntity.ok(sortedActors);
     }
 
     @PostMapping("/actors")

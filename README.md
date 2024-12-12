@@ -58,6 +58,12 @@ Available at `http://localhost:8080/swagger-ui/index.html`
 - **GET Actor by Associated Movies**
     - **Endpoint:** `GET /api/actors/{id}/movies`
     - **Description:** Retrieves a list of movies associated with an actor by their ID.
+- **GET Actors Sorted Alphabetically**
+    - **Endpoint:** `GET /api/actors/sort`
+    - **Parameters:**
+        - `page`: Page number (optional)
+        - `size`: Page size (optional)
+    - **Description:** Retrieves a list of all actors sorted alphabetically.
 - **Create a New Actor**
     - **Endpoint:** `POST /api/actors`
     - **Description:** Adds a new actor to the database.
@@ -131,3 +137,11 @@ Available at `http://localhost:8080/swagger-ui/index.html`
 
 Automatically generated API documentation with Swagger-UI.
 It makes easier to understand, explore and test the API without needing external tools.
+
+### Actors Sorting Alphabetically
+
+Retrieves a list of all actors sorted alphabetically by their name.
+You can optionally provide pagination parameters (page and size) to retrieve a specific subset of the actors list.
+
+Example Request:
+`GET /api/actors/sort?page=0&size=2`
